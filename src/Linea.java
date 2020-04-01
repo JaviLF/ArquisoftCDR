@@ -1,11 +1,14 @@
 
-public class Linea {
+public class Linea{
 	private int numero;
 	private String plan;
 	private String nombrePropietario;
 	
 	
 
+	public Linea() {
+		
+	}
 	public Linea(int numero,String plan, String nombrePropietario) {
 		this.numero=numero;
 		this.plan=plan;
@@ -35,6 +38,7 @@ public class Linea {
 	public String getLinea() {
 		return String.format("Numero:%s - Plan:%s - Nombre Propietario:%s", this.numero, this.plan,this.nombrePropietario); 
 	}
+
 	
 	
 
