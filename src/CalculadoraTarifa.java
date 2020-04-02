@@ -1,20 +1,6 @@
 
-public abstract class CalculadoraTarifa implements Llamada{
+public interface CalculadoraTarifa{
 	
-	private Llamada llamada;
-	
-	
-	public CalculadoraTarifa(Llamada llamada) {
-		setLlamada(llamada);
-	}
-	
-	public Llamada getLlamada() {
-		return llamada;
-	}
-	
-	public void setLlamada(Llamada llamada) {
-		this.llamada=llamada;
-	}
-	
+	public double calcular(Llamada llamada);
 
 }
