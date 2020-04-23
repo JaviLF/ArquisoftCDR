@@ -1,6 +1,6 @@
 
 public interface CalculadoraTarifa{
 	
-	public double calcular(Llamada llamada);
+	public double calcularTarifa(Llamada llamada);
 
 }

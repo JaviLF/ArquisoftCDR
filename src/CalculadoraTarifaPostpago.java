@@ -1,14 +1,16 @@
 
 public class CalculadoraTarifaPostpago implements CalculadoraTarifa{
 
-	public double calcular(Llamada llamada) {
-		String str = String.valueOf(llamada.getTiempoLlamada());
-		double tarifa = Double.parseDouble(str.substring(0, str.indexOf('.')));
-		float decNumbert = Float.parseFloat(str.substring(str.indexOf('.')));
-		
-		if(decNumbert>0.50) {
-			tarifa=tarifa+0.5;
-		}
+	Llamada llamada;
+	LineaPostpago linea=new LineaPostpago();
+	
+	public CalculadoraTarifaPostpago(Llamada llamada1,LineaPostpago linea) {
+		llamada=llamada1;
+		this.linea=linea;
+	}
+	
+	public double calcularTarifa(Llamada llamada) {
+		double tarifa=llamada.getTiempoLlamada()*linea.getTarifa();
 		return tarifa;
 	}
 }

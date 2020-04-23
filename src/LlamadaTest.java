@@ -4,14 +4,14 @@ import junit.framework.Assert;
 
 public class LlamadaTest {
 	@Test
-	public void testForSetAndGetLineas() {
+	public void testForSetAndGetNumeros() {
 		 Llamada llamada1 = new Llamada();
-		 Linea lineaDeHenry=new Linea("12345678","wow","Henry Torrico Jimpol");
-		 Linea lineaDeSergio=new Linea("0000","postpago","Sergio Rivera Mai");
-		 llamada1.setLineaEntrante(lineaDeHenry);
-		 llamada1.setLineaSaliente(lineaDeSergio);
-		 Assert.assertEquals("Numero:12345678 - Plan:wow - Nombre Propietario:Henry Torrico Jimpol",llamada1.getLineaEntrante().getLinea());
-		 Assert.assertEquals("Numero:0000 - Plan:postpago - Nombre Propietario:Sergio Rivera Mai",llamada1.getLineaSaliente().getLinea());
+		 String numeroDeHenry="12345678";
+		 String numeroDeSergio="0000";
+		 llamada1.setNumeroLlamante(numeroDeHenry);
+		 llamada1.setNumeroLlamado(numeroDeSergio);
+		 Assert.assertEquals("12345678",llamada1.getNumeroLlamante());
+		 Assert.assertEquals("0000",llamada1.getNumeroLlamado());
 	}
 	@Test
 	public void testForSetAndGetHoraLlamada() {
@@ -20,23 +20,34 @@ public class LlamadaTest {
 		Assert.assertEquals(16,llamada1.getHoraLlamada());  
 	}
 	@Test
-	public void testForAetAndGetTiempoLlamada() {
+	public void testForSetAndGetTiempoLlamada() {
 		Llamada llamada1 = new Llamada();
 		llamada1.setTiempoLlamada(4.53);
 		Assert.assertEquals(4.53,llamada1.getTiempoLlamada());  
 	}
 	@Test
 	public void testForCalculateTarifa() {
+		
+		LineaPrepago lineaDeJavier=new LineaPrepago("1111","Javier Loayza");
+		LineaPostpago lineaDeSergio=new LineaPostpago("0000","Sergio Rivera Mai");
+		LineaWow lineaDeHenry=new LineaWow("2222","Henry Torrico");
 		Llamada llamada1 = new Llamada();
-		llamada1.setHoraLlamada(12);
-		llamada1.setTiempoLlamada(1.54);
-		Linea lineaDeSergio=new Linea("0000","postpago","Sergio Rivera Mai");
-		llamada1.setLineaSaliente(lineaDeSergio);
-		Assert.assertEquals(1.50,llamada1.calcularTarifa());
-		lineaDeSergio.setPlan("wow");
-		Assert.assertEquals(0.75,llamada1.calcularTarifa());
-		lineaDeSergio.setPlan("prepago");
-		llamada1.setHoraLlamada(20);
-		Assert.assertEquals(3.0,llamada1.calcularTarifa());
+		llamada1.setHoraLlamada(22);
+		llamada1.setTiempoLlamada(2.54);
+		llamada1.setNumeroLlamado(lineaDeSergio.getNumero());
+		llamada1.setNumeroLlamante(lineaDeJavier.getNumero());
+		CalculadoraTarifa calculadora=new CalculadoraTarifaPrepago(llamada1,lineaDeJavier);
+		Assert.assertEquals(2.413,llamada1.calcularTarifa(calculadora));
+		llamada1.setNumeroLlamante(lineaDeSergio.getNumero());
+		llamada1.setNumeroLlamado(lineaDeHenry.getNumero());
+		calculadora=new CalculadoraTarifaPostpago(llamada1,lineaDeSergio);
+		Assert.assertEquals(2.5146,llamada1.calcularTarifa(calculadora));
+		llamada1.setNumeroLlamante(lineaDeHenry.getNumero());
+		llamada1.setNumeroLlamado(lineaDeSergio.getNumero());
+		lineaDeHenry.agregarNumeroAmigo(lineaDeSergio.getNumero());
+		calculadora=new CalculadoraTarifaWow(llamada1,lineaDeHenry);
+		Assert.assertEquals(0.0,llamada1.calcularTarifa(calculadora));
+		llamada1.setNumeroLlamado(lineaDeJavier.getNumero());
+		Assert.assertEquals(2.5146,llamada1.calcularTarifa(calculadora));
 	}
 }

@@ -5,31 +5,39 @@ import junit.framework.Assert;
 
 public class LineaTest {
 	@Test
-	public void testForCreateLinea0() {
-		Linea lineaDeHenry=new Linea();
-		Assert.assertEquals("Numero:0000 - Plan:prepago - Nombre Propietario:Pepe",lineaDeHenry.getLinea()); 
+	public void testForLinea() {
+		Linea lineaDeHenry=new LineaPrepago("1111","Henry");
+		Assert.assertEquals("1111",lineaDeHenry.getNumero());
+		Assert.assertEquals("prepago",lineaDeHenry.getPlan());
+		Assert.assertEquals("Henry",lineaDeHenry.getNombreUsuario());
 	}
 	@Test
-	public void testForCreateLinea() {
-		Linea lineaDeHenry=new Linea("12345678","wow","Henry Torrico Jimpol");
-		Assert.assertEquals("Numero:12345678 - Plan:wow - Nombre Propietario:Henry Torrico Jimpol",lineaDeHenry.getLinea()); 
+	public void testForLineaPrepago() {
+		LineaPrepago lineaDeHenry=new LineaPrepago("1111","Henry");
+		Assert.assertEquals("1111",lineaDeHenry.getNumero());
+		Assert.assertEquals("prepago",lineaDeHenry.getPlan());
+		Assert.assertEquals("Henry",lineaDeHenry.getNombreUsuario());
+		Assert.assertEquals(1.45,lineaDeHenry.getTarifaHorarioNormal());
+		Assert.assertEquals(0.95,lineaDeHenry.getTarifaHorarioReducido());
+		Assert.assertEquals(0.70,lineaDeHenry.getTarifaHorarioSuperReducido());
 	}
 	@Test
-	public void testForGetAndSetNumero() {
-		Linea linea1=new Linea("12345678","wow","Henry Torrico Jimpol");
-		linea1.setNumero("222");
-		Assert.assertEquals("222",linea1.getNumero()); 
+	public void testForLineaPostpago() {
+		LineaPostpago lineaDeHenry=new LineaPostpago("1111","Henry");
+		Assert.assertEquals("1111",lineaDeHenry.getNumero());
+		Assert.assertEquals("postpago",lineaDeHenry.getPlan());
+		Assert.assertEquals("Henry",lineaDeHenry.getNombreUsuario());
+		Assert.assertEquals(0.99,lineaDeHenry.getTarifa());
 	}
 	@Test
-	public void testForGetAndSetPlan() {
-		Linea linea1=new Linea("12345678","wow","Henry Torrico Jimpol");
-		linea1.setPlan("post-pago");
-		Assert.assertEquals("post-pago",linea1.getPlan()); 
+	public void testForLineaWow() {
+		LineaWow lineaDeHenry=new LineaWow("1111","Henry");
+		Assert.assertEquals("1111",lineaDeHenry.getNumero());
+		Assert.assertEquals("wow",lineaDeHenry.getPlan());
+		Assert.assertEquals("Henry",lineaDeHenry.getNombreUsuario());
+		lineaDeHenry.agregarNumeroAmigo("222");
+		Assert.assertEquals(0.99,lineaDeHenry.getTarifa("333"));
+		Assert.assertEquals(0.0,lineaDeHenry.getTarifa("222"));
 	}
-	@Test
-	public void testForGetAndSetUsuario() {
-		Linea linea1=new Linea("12345678","wow","Henry Torrico Jimpol");
-		linea1.setNombreUsuario("Sergio");
-		Assert.assertEquals("Sergio",linea1.getNombreUsuario()); 
-	}
+	
 }

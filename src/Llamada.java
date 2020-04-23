@@ -1,28 +1,18 @@
 
 public class Llamada {
 	
-	public Linea lineaSaliente=new Linea();
-	public Linea lineaEntrante=new Linea();
+	private String numeroLlamante;
+	private String numeroLlamado;
+
+	private int horaLlamada = 0;
+	private double tiempoLlamada= 0;
+	private double tarifa=0;
 	
-	public int horaLlamada = 0;
-	public double tiempoLlamada= 0;
-	
-	public double calcularTarifa() {
-		double tarifa=0;
-		if(lineaSaliente.getPlan()=="prepago") {
-			CalculadoraTarifa calc=new CalculadoraTarifaPrepago();
-			tarifa= calc.calcular(this);
-		}
-		if(lineaSaliente.getPlan()=="postpago") { //falta implementar aun
-			CalculadoraTarifa calc=new CalculadoraTarifaPostpago();
-			tarifa= calc.calcular(this);
-		}
-		if(lineaSaliente.getPlan()=="wow") { //falta implementar aun
-			CalculadoraTarifa calc=new CalculadoraTarifaWow();
-			tarifa= calc.calcular(this);
-		}
+	public double calcularTarifa(CalculadoraTarifa calculadora) {
+		tarifa=calculadora.calcularTarifa(this);
 		return tarifa;
 	}
+	
 	public void setHoraLlamada(int horaLlamada) {
 		this.horaLlamada=horaLlamada;
 	}
@@ -35,16 +25,17 @@ public class Llamada {
 	public double getTiempoLlamada() {
 		return tiempoLlamada;
 	}
-	public void setLineaSaliente(Linea lineaSaliente) {
-		this.lineaSaliente=lineaSaliente;
+	public void setNumeroLlamante(String numeroLlamante) {
+		this.numeroLlamante=numeroLlamante;
 	}
-	public Linea getLineaSaliente() {
-		return lineaSaliente;
+	public String getNumeroLlamante() {
+		return numeroLlamante;
 	}
-	public Linea getLineaEntrante() {
-		return lineaEntrante;
+	public void setNumeroLlamado(String numeroLlamado) {
+		this.numeroLlamado=numeroLlamado;
 	}
-	public void setLineaEntrante(Linea lineaEntrante) {
-		this.lineaEntrante=lineaEntrante;
+	public String getNumeroLlamado() {
+		return numeroLlamado;
 	}
+	
 }
