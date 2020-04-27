@@ -1,17 +1,16 @@
 
 public class CalculadoraTarifaWow implements CalculadoraTarifa{
 
-	public double calcular(Llamada llamada) {
-		String str = String.valueOf(llamada.getTiempoLlamada());
-		double tarifa = Double.parseDouble(str.substring(0, str.indexOf('.')));
-		float decNumbert = Float.parseFloat(str.substring(str.indexOf('.')));
-		
-		if(decNumbert>0.50) {
-			tarifa=tarifa+0.5;
-		}
-		if (llamada.getHoraLlamada()<19) {
-			tarifa=tarifa/2;
-		}
+	Llamada llamada;
+	LineaWow linea=new LineaWow();
+	
+	public CalculadoraTarifaWow(Llamada llamada1,LineaWow linea) {
+		llamada=llamada1;
+		this.linea=linea;
+	}
+	
+	public double calcularTarifa(Llamada llamada) {
+		double tarifa=llamada.getTiempoLlamada()*linea.getTarifa(llamada.getNumeroLlamado());
 		return tarifa;
 	}
 }

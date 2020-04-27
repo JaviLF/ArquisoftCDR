@@ -1,20 +1,8 @@
 
-public class Linea{
-	private String numero;
-	private String plan;
-	private String nombrePropietario;
-	
-	public Linea() {
-		numero="0000";
-		plan="prepago";
-		nombrePropietario="Pepe";
-	}
-	public Linea(String numero,String plan, String nombrePropietario) {
-		this.numero=numero;
-		this.plan=plan;
-		this.nombrePropietario=nombrePropietario;	
-	}
-	
+public abstract class Linea{
+	protected String numero;
+	protected String plan;
+	protected String nombrePropietario;
 	
 	public String getNumero() {
 		return numero;
@@ -35,8 +23,4 @@ public class Linea{
 		this.nombrePropietario = nombreUsuario;
 	}
 	
-	public String getLinea() {
-		return String.format("Numero:%s - Plan:%s - Nombre Propietario:%s", this.numero, this.plan,this.nombrePropietario); 
-	}
-
 }
