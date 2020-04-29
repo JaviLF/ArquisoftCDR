@@ -8,7 +8,7 @@ import java.io.ObjectOutputStream;
 
 public class FicherosBinarios {
 	
-	public void guardarLinea() {
+	public void guardarLlamada() {
 		File file;
 		FileOutputStream fileOutputStream;
 		ObjectOutputStream objectOutputStream;
@@ -18,12 +18,18 @@ public class FicherosBinarios {
 			fileOutputStream = new FileOutputStream(file);
 			objectOutputStream = new ObjectOutputStream(fileOutputStream);
 			
-			Linea linea = new LineaPostpago();
-			linea.setNumero("11111");
-			linea.setNombreUsuario("Pepe");
-			linea.setPlan("WOW");
+			//Linea linea = new LineaPostpago("1111","Henry");
+			//System.out.println("Numero: " + linea.getNumero());
+			//System.out.println("Usuario: " + linea.getNombreUsuario());
+			//System.out.println("Plan: " + linea.getPlan());
+			Llamada llamada1 = new Llamada();
+			 String numeroDeHenry="12345678";
+			 String numeroDeSergio="0000";
+			 llamada1.setNumeroLlamante(numeroDeHenry);
+			 llamada1.setNumeroLlamado(numeroDeSergio);
 			
-			objectOutputStream.writeObject(linea);
+			
+			objectOutputStream.writeObject(llamada1);
 			
 			
 		} catch (FileNotFoundException ex) {
@@ -34,7 +40,7 @@ public class FicherosBinarios {
 		
 	}
 	
-	public void cargarLinea() {
+	public void cargarLlamada() {
 		File file;
 		FileInputStream fileInputStream;
 		ObjectInputStream objectInputStream;
@@ -43,20 +49,20 @@ public class FicherosBinarios {
 		try {
 			fileInputStream = new FileInputStream(file);
 			objectInputStream = new ObjectInputStream(fileInputStream);
-			
-			while(true) {
+			boolean end = false;
+			while(!end) {
 				Object data = objectInputStream.readObject();
-				Linea linea = (Linea)data;
-				System.out.println("Numero: " + linea.getNumero());
-				System.out.println("Usuario: " + linea.getNombreUsuario());
-				System.out.println("Plan: " + linea.getPlan());
+				Llamada linea =  (Llamada)data;
+				System.out.println("Numero: " + linea.getNumeroLlamante());
+				System.out.println("Usuario: " + linea.getNumeroLlamado());
 				
+				end = true;
 			}
 			
 		} catch (FileNotFoundException ex) {
-			
+			System.out.println("no file exception error");
 		} catch (IOException | ClassNotFoundException ex) {
-			
+			ex.printStackTrace();
 		}
 	}
 	

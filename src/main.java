@@ -5,9 +5,9 @@ public class main {
 		// TODO Auto-generated method stub
 			FicherosBinarios ficherosBinarios = new FicherosBinarios();
 			//System.out.println("HIZO CORRER ESTO");
-			ficherosBinarios.guardarLinea();
-			ficherosBinarios.cargarLinea();
-			//System.out.println("TERMINO");
+			ficherosBinarios.guardarLlamada();
+			ficherosBinarios.cargarLlamada();
+			System.out.println("TERMINO");
 	}
 
 }

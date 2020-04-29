@@ -1,5 +1,6 @@
+import java.io.Serializable;
 
-public class Llamada {
+public class Llamada implements Serializable{
 	
 	private String numeroLlamante;
 	private String numeroLlamado;
