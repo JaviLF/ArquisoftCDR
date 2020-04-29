@@ -1,5 +1,6 @@
+import java.io.Serializable;
 
-public class LineaPostpago extends Linea{
+public class LineaPostpago extends Linea implements Serializable{
 	private double tarifa;
 	
 	public LineaPostpago() {
