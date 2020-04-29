@@ -8,7 +8,7 @@ import java.io.ObjectOutputStream;
 
 public class FicherosBinarios {
 	
-	public void guardarLlamada() {
+	public void guardarLlamada(Llamada llamada) {
 		File file;
 		FileOutputStream fileOutputStream;
 		ObjectOutputStream objectOutputStream;
@@ -17,27 +17,12 @@ public class FicherosBinarios {
 		try {
 			fileOutputStream = new FileOutputStream(file);
 			objectOutputStream = new ObjectOutputStream(fileOutputStream);
-			
-			//Linea linea = new LineaPostpago("1111","Henry");
-			//System.out.println("Numero: " + linea.getNumero());
-			//System.out.println("Usuario: " + linea.getNombreUsuario());
-			//System.out.println("Plan: " + linea.getPlan());
-			Llamada llamada1 = new Llamada();
-			 String numeroDeHenry="12345678";
-			 String numeroDeSergio="0000";
-			 llamada1.setNumeroLlamante(numeroDeHenry);
-			 llamada1.setNumeroLlamado(numeroDeSergio);
-			
-			
-			objectOutputStream.writeObject(llamada1);
-			
-			
+			objectOutputStream.writeObject(llamada);			
 		} catch (FileNotFoundException ex) {
 			System.out.println("Save error");
 		} catch (IOException ex) {
 			ex.printStackTrace();
 		}
-		
 	}
 	
 	public void cargarLlamada() {
