@@ -39,8 +39,14 @@ public class main {
 		Llamada llamada1 = new Llamada();
 		String numeroDeHenry="1111111";
 		String numeroDeSergio="2222222";
+		int horaLlamada = 12;
+		double tiempoLlamada= 1.2;
+		double tarifa=10;
+		
 		llamada1.setNumeroLlamante(numeroDeHenry);
 		llamada1.setNumeroLlamado(numeroDeSergio);
+		llamada1.setHoraLlamada(horaLlamada);
+		llamada1.setTiempoLlamada(tiempoLlamada);
 		
 		archivo.guardarLlamada(llamada1);
 		
@@ -55,9 +61,10 @@ public class main {
 	
 	public static void main(String[] args) {
 		
-			pruebaDeGuardadVariasLlamadas();
-			pruebaDeCargarLlamadas();
-			System.out.println("TERMINO");
+			//pruebaDeGuardadVariasLlamadas();
+		guardarUnaLlamada();	
+		pruebaDeCargarLlamadas();
+		System.out.println("TERMINO");
 			
 	}
 

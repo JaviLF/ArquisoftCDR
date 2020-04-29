@@ -15,11 +15,11 @@ public class Archivo {
 				fw = new FileWriter(f,true);
 				bw = new BufferedWriter(fw);
 				bw.newLine();
-				bw.write(llamada.getNumeroLlamante() + "%" + llamada.getNumeroLlamado());
+				bw.write(llamada.getNumeroLlamante() + "%" + llamada.getNumeroLlamado() + "%" + llamada.getHoraLlamada() + "%" + llamada.getTiempoLlamada());
 			}else {
 				fw = new FileWriter(f);
 				bw = new BufferedWriter(fw);
-				bw.write(llamada.getNumeroLlamante() + "%" + llamada.getNumeroLlamado());
+				bw.write(llamada.getNumeroLlamante() + "%" + llamada.getNumeroLlamado() + "%" + llamada.getHoraLlamada() + "%" + llamada.getTiempoLlamada());
 			}
 			bw.close();
 			fw.close(); 
@@ -40,8 +40,12 @@ public class Archivo {
 					Llamada p = new Llamada();
 					p.setNumeroLlamante(contacto[0]);
 					p.setNumeroLlamado(contacto[1]);
+					p.setHoraLlamada(Integer.parseInt(contacto[2]));
+					p.setTiempoLlamada(Double.parseDouble(contacto[3]));
 					System.out.println(p.getNumeroLlamante());
 					System.out.println(p.getNumeroLlamado());
+					System.out.println(p.getHoraLlamada());
+					System.out.println(p.getTiempoLlamada());
 					System.out.println("******************");
 				}
 				br.close();
